@@ -3,8 +3,9 @@ pipeline {
   stages {
     stage('Create txt file') {
       steps {
-        sh '''\'python Create_text_file.py\'
+        sh '''python Create_text_file.py
 '''
+        sh 'python --version'
       }
     }
 
