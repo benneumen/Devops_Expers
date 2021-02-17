@@ -30,11 +30,11 @@ def user(user_id):
             return {'status': 'ok', 'user added': user_name}, 200  # status code
         except(pymysql.err.IntegrityError):
             res = get_all_users_ids()
-            num = random.randint(1000,9999)
+            num = random.randint(1000, 9999)
             while num in res:
                 num = random.randint(1000, 9999)
                 insert_user(num, user_name, time)
-            return {'status': 'Info', 'reason': f"id already exist inserted  id {num} instead "}, 201  # status code
+            return {'status': 'Info', 'reason': f"id already exist inserted  id {num} instead"}, 201  # status code
 
     elif request.method == 'PUT':
         try:
