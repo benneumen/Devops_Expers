@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Run Backend_Server') {
       steps {
-        sh 'python clean_environment.py'
+        sh 'nohup python clean_environment.py &'
       }
     }
 
