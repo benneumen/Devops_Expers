@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Text file job') {
       steps {
-        sh '''touch text_file.txt
+        sh '''touch /Users/benn/Desktop/text_file.txt
 '''
       }
     }
