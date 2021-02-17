@@ -2,7 +2,8 @@ from datetime import datetime
 from flask import Flask, request
 from db_connector import *
 from numpy import random
-
+import os
+import signal
 app = Flask(__name__)
 
 
@@ -54,5 +55,14 @@ def user(user_id):
             return {'status': 'ok', 'user_deleted': user_id}, 200  # status code
         except:
             return {'status': 'error', 'reason': "no such id"}, 500
+
+@app.route('/stop_server')
+def stop_server():
+    try:
+        os.kill(os.getpid(),signal.SIGINT)
+        return {'status': 'ok', 'server stopped': 'true'}, 200  # status code
+    except:
+        return {'status': 'error', 'reason': 'server not responding'}, 500
+
 
 app.run(host='127.0.0.1', debug=True, port=5000)
