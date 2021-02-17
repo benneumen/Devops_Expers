@@ -22,5 +22,11 @@ df -h'''
       }
     }
 
+    stage('Move text file ') {
+      steps {
+        sh 'mv /Users/benn/Desktop/text_file.txt /Users/benn/Desktop/Private/'
+      }
+    }
+
   }
 }
