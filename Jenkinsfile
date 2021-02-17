@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Create txt file') {
       steps {
-        sh '''with open(\'/Users/benn/Desktop/text_file.txt\', \'w\') as f:
-    data = \'some data to be written to the file\'
+        sh '''with open("/Users/benn/Desktop/text_file.txt", \'w\') as f:
+    data = \'Hey Ben\'
     f.write(data)'''
       }
     }
