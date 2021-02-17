@@ -15,5 +15,12 @@ pipeline {
       }
     }
 
+    stage('Available Disk Space') {
+      steps {
+        sh '''cd /
+df -h'''
+      }
+    }
+
   }
 }
