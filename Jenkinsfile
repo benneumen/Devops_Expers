@@ -1,9 +1,10 @@
 pipeline {
   agent any
+  triggers { pollSCM('* * * * *') }
   stages {
     stage('Initiate Git ') {
       steps {
-        git(url: 'https://github.com/benneumen/Devops_Expers.git', poll: true)
+        git 'https://github.com/benneumen/Devops_Expers.git'
         echo 'Git successfully initiated'
       }
     }
