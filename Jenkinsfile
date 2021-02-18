@@ -1,21 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Run Backend_Server') {
+    stage('initiate git ') {
       steps {
-        sh 'nohup python rest_app.py &'
+        git(url: 'https://github.com/benneumen/Devops_Expers.git', poll: true)
       }
     }
 
-    stage('Run Web_Server') {
+    stage('Git initiated Msg') {
       steps {
-        sh 'nohup python web_app.py &'
-      }
-    }
-
-    stage('Shutting down Both servers') {
-      steps {
-        sh 'python clean_environment.py'
+        echo 'Git successfully initiated'
       }
     }
 
