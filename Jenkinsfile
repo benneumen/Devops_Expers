@@ -4,11 +4,6 @@ pipeline {
     stage('Initiate Git ') {
       steps {
         git(url: 'https://github.com/benneumen/Devops_Expers.git', poll: true)
-      }
-    }
-
-    stage('Git initiated Msg') {
-      steps {
         echo 'Git successfully initiated'
       }
     }
@@ -25,9 +20,27 @@ pipeline {
       }
     }
 
-    stage('Terminate both servers') {
+    stage('Run Backend test') {
       steps {
-        sh 'python clean_environment.py'
+        sh 'python3 backend_testing.py'
+      }
+    }
+
+    stage('Run Frontend test') {
+      steps {
+        sh 'python3 frontend_testing.py'
+      }
+    }
+
+    stage('Run Combined test') {
+      steps {
+        sh 'python3 combined_testing.py'
+      }
+    }
+
+    stage('Clean environment') {
+      steps {
+        sh 'python3 clean_environment.py'
       }
     }
 
