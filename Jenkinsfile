@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Initiate Git ') {
       steps {
-        script {
-          properties([pipelineTriggers([pollSCM('* * * * *')])])
-        }
-        git 'https://github.com/benneumen/Devops_Expers.git'
+        git(url: 'https://github.com/benneumen/Devops_Expers.git', poll: true)
         echo 'Git successfully initiated'
       }
     }
