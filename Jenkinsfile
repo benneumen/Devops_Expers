@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('start rest_app server') {
+      steps {
+        sh 'nohup python rest_app.py &'
+      }
+    }
+
   }
 }
