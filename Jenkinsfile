@@ -9,36 +9,14 @@ pipeline {
     }
 
     stage('Start rest_app') {
-      parallel {
-        stage('Start rest_app') {
-          steps {
-            sh 'nohup python3 rest_app.py &'
-          }
-        }
-
-        stage('rest_app ERROR') {
-          steps {
-            echo 'Failed to start rest_app server'
-          }
-        }
-
+      steps {
+        sh 'nohup python3 rest_app.py &'
       }
     }
 
     stage('Start web_app') {
-      parallel {
-        stage('Start web_app') {
-          steps {
-            sh 'nohup python3 web_app.py &'
-          }
-        }
-
-        stage('web_app ERROR') {
-          steps {
-            echo 'Failed to start web_app server'
-          }
-        }
-
+      steps {
+        sh 'nohup python3 web_app.py &'
       }
     }
 
