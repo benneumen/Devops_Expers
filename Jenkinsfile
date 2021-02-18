@@ -2,6 +2,7 @@ pipeline {
   agent any
   triggers { pollSCM('*/30 * * * *') }
   stages {
+    emailext body: 'Your DevOps Experts pipeline started!', subject: 'Pipeline Started', to: 'benneumen@gmail.com'
     stage('Initiate Git ') {
       steps {
         git 'https://github.com/benneumen/Devops_Expers.git'
@@ -42,6 +43,7 @@ pipeline {
     stage('Clean environment') {
       steps {
         sh 'python3 clean_environment.py'
+        emailext body: 'Your DevOps Experts pipeline done!', subject: 'Pipeline Done', to: 'benneumen@gmail.com'
       }
     }
 
