@@ -34,7 +34,7 @@ def user(user_id):
             while num in res:
                 num = random.randint(1000, 9999)
                 insert_user(num, user_name, time)
-            return {'status': 'Info', 'reason': "id already exist inserted  id" +{num}+ "instead"}, 201  # status code
+            return {'status': 'Info', 'reason': f"id already exist inserted  id {num} instead"}, 201  # status code
 
     elif request.method == 'PUT':
         try:
