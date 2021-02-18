@@ -21,7 +21,7 @@ pipeline {
 
     stage('Start web_app') {
       steps {
-        sh 'nohup python web_app.py &'
+        sh 'nohup python3 web_app.py &'
       }
     }
 
