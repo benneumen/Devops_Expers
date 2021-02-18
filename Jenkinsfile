@@ -1,7 +1,6 @@
 pipeline {
   agent any
   triggers { pollSCM('*/30 * * * *') }
-  emailext body: 'Your DevOps Experts pipeline started!', subject: 'Pipeline Started', to: 'benneumen@gmail.com'
   stages {
     stage('Initiate Git ') {
       steps {
@@ -48,5 +47,4 @@ pipeline {
     }
 
   }
-  emailext body: 'Your DevOps Experts pipeline done!', subject: 'Pipeline Done', to: 'benneumen@gmail.com'
 }
