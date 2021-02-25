@@ -17,7 +17,8 @@ pipeline {
       try{
         steps {
               sh 'nohup python rest_app.py &'
-          } catch (err){
+          } 
+      catch (err){
               emailext body: "${err}", subject: 'Pipeline Failed Alert', to: 'benneumen@gmail.com'
           }
         }
