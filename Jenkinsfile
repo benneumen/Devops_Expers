@@ -16,11 +16,7 @@ pipeline {
     stage('Start rest_app') {
       try{
         steps {
-<<<<<<< HEAD
               sh 'nohup python3 rest_app.py &'
-=======
-              sh 'nohup python rest_app.py &'
->>>>>>> 29a9f5a44366d7f14d2f42f5c64fd89bbd2c5c07
           }
         }
       catch (err){
