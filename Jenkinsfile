@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  triggers { pollSCM('*/30 * * * *') }
+  triggers { pollSCM('* * * * *') }
   stages {
     stage('Initiate Git ') {
       steps {
