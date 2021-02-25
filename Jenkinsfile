@@ -17,7 +17,6 @@ pipeline {
             }
             }
             }
-    }
 
     stage('Start rest_app') {
       steps {
