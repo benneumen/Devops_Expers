@@ -4,13 +4,13 @@ pipeline {
     buildDiscarder(logRotator(daysToKeepStr: '5', numToKeepStr: '20'))
   }
   stages {
-      stage('checkout') {
-          steps {
-              script {
-                  properties([pipelineTriggers([pollSCM('* * * * *')])])
-                }
-                git 'https://github.com/benneumen/Devops_Expers.git'
-            }
+    stage('checkout') {
+        steps {
+            script {
+                properties([pipelineTriggers([pollSCM('* * * * *')])])
+              }
+              git 'https://github.com/benneumen/Devops_Expers.git'
+          }
     }
 
     stage('Start rest_app') {
