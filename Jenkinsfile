@@ -16,9 +16,9 @@ pipeline {
     stage('Start rest_app') {
       steps {
         try{
-        sh 'nohup python rest_app.py &'
+            sh 'nohup python rest_app.py &'
         } catch (err){
-        emailext body: "${err}", subject: 'Pipeline Failed Alert', to: 'benneumen@gmail.com'
+            emailext body: "${err}", subject: 'Pipeline Failed Alert', to: 'benneumen@gmail.com'
         }
       }
     }
