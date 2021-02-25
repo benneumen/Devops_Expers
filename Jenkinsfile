@@ -2,11 +2,13 @@ pipeline {
   agent any
   triggers { pollSCM('* * * * *') }
   stages {
-    stage('Initiate Git ') {
-      steps {
-        git 'https://github.com/benneumen/Devops_Expers.git'
-        echo 'Git successfully initiated'
-      }
+      stage('checkout') {
+          steps {
+              script {
+                  properties([pipelineTriggers([pollSCM('* * * * *')])])
+                }
+                git 'https://github.com/benneumen/Devops_Expers.git'
+            }
     }
 
     stage('Start rest_app') {
