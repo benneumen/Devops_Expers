@@ -7,7 +7,7 @@ pipeline {
     stage('checkout') {
         steps {
             script {
-                properties([pipelineTriggers([pollSCM('* * * * *')])])
+                properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
               }
               git 'https://github.com/benneumen/Devops_Expers.git'
           }
