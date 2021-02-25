@@ -3,13 +3,19 @@ pipeline {
     options {
     buildDiscarder(logRotator(daysToKeepStr: '5', numToKeepStr: '20'))
   }
-  stages {
+  stages
+  {
       stage('checkout') {
           steps {
+          try{
               script {
                   properties([pipelineTriggers([pollSCM('* * * * *')])])
                 }
                 git 'https://github.com/benneumen/Devops_Expers.git'
+            }catch (err){
+            emailext body: "${err}", subject: 'Pipeline Failed Alert', to: 'benneumen@gmail.com'
+            }
+            }
             }
     }
 
