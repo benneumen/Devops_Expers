@@ -4,42 +4,57 @@ pipeline {
     buildDiscarder(logRotator(daysToKeepStr: '5', numToKeepStr: '20'))
   }
   stages {
-    stage('Start rest_app') {
+    stage('checkout') {
         steps {
-              sh 'nohup python3 rest_app.py &'
+              git 'https://github.com/benneumen/Devops_Expers.git'
           }
     }
-
-    stage('Start web_app') {
-      steps {
-        sh 'nohup python3 web_app.py &'
-      }
+    parameters {
+        choice(
+            choices: ['1' , '2' , '3'],
+            description: 'Choosing pipeline options',
+            name: 'REQUESTED_ACTION')
     }
 
-    stage('Run Backend test') {
-      steps {
-        sh 'python3 backend_testing.py'
-      }
+    stages {
+        stage ('Start rest_app') {
+            steps {
+                sh 'nohup python3 rest_app.py &'
+            }
+        }
+        stage ('Start web_app') {
+            steps {
+                sh 'nohup python3 web_app.py &'
+            }
+        }
+        stage ('Frontend Testing') {
+            when {
+                expression { params.REQUESTED_ACTION == '1' }
+            }
+            steps {
+                sh 'python3 frontend_testing.py'
+            }
+        }
+        stage ('Backend Testing' ) {
+            when {
+                expression {params.REQUESTED_ACTION == '2'}
+            }
+            steps {
+                sh 'python3 backend_testing.py'
+            }
+        }
+        stage ('Combined Testing' ) {
+            when {
+                expression {params.REQUESTED_ACTION == '3'}
+            }
+            steps {
+                sh 'python3 combined_testing.py'
+            }
+        }
+        stage ('Clean environment') {
+            steps {
+                sh 'python3 clean_environment.py'
+            }
+        }
     }
-
-    stage('Run Frontend test') {
-      steps {
-        sh 'python3 frontend_testing.py'
-      }
-    }
-
-    stage('Run Combined test') {
-      steps {
-        sh 'python3 combined_testing.py'
-      }
-    }
-
-    stage('Clean environment') {
-      steps {
-        sh 'python3 clean_environment.py'
-
-      }
-    }
-
-  }
 }
