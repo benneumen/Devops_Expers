@@ -9,7 +9,7 @@ pipeline {
             script {
                 properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
               }
-              git 'https://github.com/benneumen/Devops_Expers.git'
+              git 'https://github.com/benneumen/Devops_Expers.gitgit'
           }
     }
 
