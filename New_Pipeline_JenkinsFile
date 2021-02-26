@@ -5,6 +5,7 @@ pipeline {
 	}
     parameters {
         choice(
+	    defaultValue: '3',
             choices: ['1' , '2' , '3'],
             description: 'Choosing pipeline options',
             name: 'REQUESTED_ACTION')
