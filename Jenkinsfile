@@ -51,4 +51,9 @@ pipeline {
     }
 
   }
+  post {
+        failure {
+            emailext body: 'Hi there was an error in jenkins!', subject: 'Error in Jenkins', to: 'benneumen@gmail.com'
+        }
+    }
 }
